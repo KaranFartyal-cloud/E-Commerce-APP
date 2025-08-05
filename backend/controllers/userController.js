@@ -59,4 +59,9 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const testRoute = async (req, res) => {
+  // console.log(req.user);
+  res.send("this is protected route");
+};
+
+module.exports = { registerUser, authUser, testRoute };
