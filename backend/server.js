@@ -1,16 +1,22 @@
 const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv");
-const app = express();
 const { connectDB } = require("./config/db.js");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
+const userRoutes = require("./routes/userRoutes.js");
 
 dotenv.config();
-connectDB();
 
 const port = process.env.Port || 8080;
+const app = express();
 
-app.get("/", (req, res) => {});
+app.use(express.json());
+app.use(morgan("dev"));
+
+connectDB();
+
+app.use("/api/user", userRoutes);
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`.bgWhite);

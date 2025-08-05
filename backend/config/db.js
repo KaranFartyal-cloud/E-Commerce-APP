@@ -11,7 +11,7 @@ const connectDB = async () => {
       //   useUnifiedTopology: true,
     });
 
-    console.log(`Mongo Db connected ${conn.connection.host}`.green.underline);
+    console.log(`Mongo Db connected ${conn.connection.host}`.bgGreen);
   } catch (err) {
     console.log(`Error ${err.messag}`.red);
     process.exit();
