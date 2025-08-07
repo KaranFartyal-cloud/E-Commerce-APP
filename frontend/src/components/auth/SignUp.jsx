@@ -126,24 +126,17 @@ const SignUp = () => {
             <FormLabel>Address</FormLabel>
             <Input type="text" onChange={(e) => setAddress(e.target.value)} />
           </FormControl>
-          <Box
-            display={"flex"}
-            justifyContent={"space-around"}
-            gap={3}
-            alignItems={"center"}
-          >
-            <Text display={"inline-block"}>
-              Already have an account?{" "}
-              <Text
-                display={"inline-block"}
-                cursor={"pointer"}
-                color={"purple"}
-                textDecor={"underline"}
-                onClick={() => navigate("/login")}
-              >
-                Sign in
-              </Text>
-            </Text>
+          <Box display={"flex"} alignItems={"center"} gap={3} my={3}>
+            Already have an account{" "}
+            <Box
+              as="span"
+              onClick={() => navigate("/login")}
+              cursor={"pointer"}
+              color={"purple"}
+              textDecor={"underline"}
+            >
+              <Text>Sign in</Text>
+            </Box>
             <Button
               my={2}
               variant={"solid"}
