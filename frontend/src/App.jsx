@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
 import "./App.css";
-import SignUp from "./components/authentication/SignUp";
-import Login from "./components/authentication/Login";
+import { Route, Routes } from "react-router-dom";
+import SignUp from "./components/auth/SignUp";
+import Login from "./components/auth/Login";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<SignUp />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
     </>
   );
 }
