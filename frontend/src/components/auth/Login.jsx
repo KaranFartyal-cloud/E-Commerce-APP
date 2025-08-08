@@ -60,7 +60,7 @@ const Login = () => {
 
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       toast({
         title: "error Occured",
@@ -123,7 +123,7 @@ const Login = () => {
             Don't have an Account{" "}
             <Box
               as="span"
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/signUp")}
               cursor={"pointer"}
               color={"purple"}
               textDecor={"underline"}

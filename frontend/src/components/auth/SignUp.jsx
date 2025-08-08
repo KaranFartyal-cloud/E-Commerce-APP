@@ -63,7 +63,7 @@ const SignUp = () => {
 
       localStorage.setItem("userInfo", JSON.stringify(data));
 
-      navigate("/home");
+      navigate("/");
     } catch (error) {}
   };
   return (
