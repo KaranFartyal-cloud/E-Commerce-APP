@@ -5,8 +5,8 @@ const { connectDB } = require("./config/db.js");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const userRoutes = require("./routes/userRoutes.js");
-const {notFound, errorHandler} = require("./middlewares/errorMiddleware.js")
-
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware.js");
+const productRoutes = require("./routes/productRoutes.js");
 
 dotenv.config();
 
@@ -19,10 +19,10 @@ app.use(morgan("dev"));
 connectDB();
 
 app.use("/api/user", userRoutes);
+app.use("/api/products", productRoutes);
 
-
-app.use(notFound);//page not found middleware
-app.use(errorHandler)//error handler middleware
+app.use(notFound); //page not found middleware
+app.use(errorHandler); //error handler middleware
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`.bgWhite);

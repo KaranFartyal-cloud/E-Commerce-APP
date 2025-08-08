@@ -4,7 +4,7 @@ const express = require("express");
 const generateToken = require("../config/generateToken.js");
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, phone, address } = req.body;
+  const { name, email, password, phone, address, role } = req.body;
   if (!name || !email || !password || !phone || !address) {
     res.status(400);
     throw new Error("Enter all the fields");
@@ -22,6 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     phone,
     address,
+    role,
   });
 
   if (user) {
@@ -32,6 +33,7 @@ const registerUser = asyncHandler(async (req, res) => {
       phone: user.phone,
       address: user.address,
       token: generateToken(user._id),
+      role: user.role,
     });
   } else {
     res.status(400);
@@ -52,6 +54,7 @@ const authUser = asyncHandler(async (req, res) => {
       phone: user.phone,
       address: user.address,
       token: generateToken(user._id),
+      role: user.role,
     });
   } else {
     res.status(401);
