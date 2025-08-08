@@ -11,12 +11,6 @@ const productSchema = mongoose.Schema(
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
-    comment: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
     buyer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
@@ -25,5 +19,5 @@ const productSchema = mongoose.Schema(
   }
 );
 
-const Product = mongoose.model("Products", productSchema);
+const Product = mongoose.model("Product", productSchema);
 module.exports = Product;
