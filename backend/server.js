@@ -7,6 +7,7 @@ const morgan = require("morgan");
 const userRoutes = require("./routes/userRoutes.js");
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware.js");
 const productRoutes = require("./routes/productRoutes.js");
+const commentRoutes = require("./routes/commentRoutes.js");
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ connectDB();
 
 app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/comment", commentRoutes);
 
 app.use(notFound); //page not found middleware
 app.use(errorHandler); //error handler middleware
