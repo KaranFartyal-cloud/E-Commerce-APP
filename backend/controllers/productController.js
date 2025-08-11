@@ -3,6 +3,33 @@ const User = require("../model/userModel.js");
 const express = require("express");
 const Product = require("../model/productModel.js");
 
+const searchProduct = asyncHandler(async (req, res) => {
+  const { query } = req.body;
+  // console.log(typeof query);
+  if (!query) {
+    res.status(400);
+    throw new Error("no query to search");
+  }
+
+  try {
+    const results = await Product.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+      ],
+    })
+      .populate("seller", "name email avatar")
+      .sort({
+        [req.query.sortBy || "createdAt"]: req.query.sortOrder || "desc",
+      });
+    res.status(200);
+    res.json(results);
+  } catch (error) {
+    res.status(500);
+    throw new Error(error.message);
+  }
+});
+
 const addProduct = asyncHandler(async (req, res) => {
   if (req.user.role !== 1) {
     res.status(400).send("you are not a seller");
@@ -89,4 +116,4 @@ const updateProduct = asyncHandler(async (req, res) => {
 
   res.status(200).json(updatedProduct);
 });
-module.exports = { addProduct, deleteProduct, updateProduct };
+module.exports = { addProduct, deleteProduct, updateProduct, searchProduct };
