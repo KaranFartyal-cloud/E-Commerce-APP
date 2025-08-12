@@ -13,8 +13,10 @@ import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../context/App.context";
 
 const Login = () => {
+  const { user, setUser } = useAppContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,6 +61,7 @@ const Login = () => {
       });
 
       localStorage.setItem("userInfo", JSON.stringify(data));
+      setUser(data);
       setLoading(false);
       navigate("/");
     } catch (error) {

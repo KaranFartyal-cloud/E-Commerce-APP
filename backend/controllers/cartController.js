@@ -109,4 +109,32 @@ const deleteFromCart = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { addToCart, deleteFromCart };
+const fetchCart = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+
+  try {
+    const cart = await Cart.findOne({ user: userId });
+
+    if (!cart) {
+      res.status(404);
+      throw new Error("no cart present");
+    }
+
+    const populatedCart = await Cart.findById(cart._id)
+      .populate({
+        path: "user",
+        select: "name email ",
+      })
+      .populate({
+        path: "products.product",
+      });
+
+    res.status(200);
+    res.json(populatedCart);
+  } catch (error) {
+    res.status(400);
+    throw new Error(error.message);
+  }
+});
+
+module.exports = { addToCart, deleteFromCart, fetchCart };
