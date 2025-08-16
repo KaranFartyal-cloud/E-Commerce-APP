@@ -8,6 +8,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
+  const [userCart, setUserCart] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
@@ -38,13 +39,16 @@ export const AppProvider = ({ children }) => {
         config
       );
 
-      console.log(data.products);
+      //   console.log(data);
+      setUserCart(data);
 
       setCart(data.products);
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const addToCart = () => {};
 
   return (
     <AppContext.Provider
@@ -55,6 +59,9 @@ export const AppProvider = ({ children }) => {
         setCart,
         selectedProduct,
         setSelectedProduct,
+        fetchCart,
+        userCart,
+        setUserCart,
       }}
     >
       {children}

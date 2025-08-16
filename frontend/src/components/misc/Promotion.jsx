@@ -39,7 +39,7 @@ const Promotion = () => {
   ];
 
   return (
-    <Box mx={5}>
+    <Box mx={7}>
       <Slider {...settings}>
         {products.map((item) => (
           <Box key={item.id} px={2}>

@@ -37,13 +37,22 @@ const header = () => {
 
       <Box
         display={"flex"}
-        justifyContent={"center"}
+        justifyContent={"space-around"}
         alignItems={"center"}
         gap={"4"}
+        width={"20%"}
       >
         <Link to={"/"}>Home</Link>
         <Link to={"/About"}>About</Link>
-        <Link to={"/Contact-Us"}>Contact-Us</Link>
+        <Link to={"/Contact-Us"}>
+          <i className="fa-solid fa-phone" style={{ fontSize: "1.5rem" }}></i>
+        </Link>
+        <Link to={"/cart"}>
+          <i
+            className="fa-solid fa-cart-shopping"
+            style={{ fontSize: "1.5rem" }}
+          ></i>
+        </Link>
       </Box>
     </Box>
   );

@@ -1,10 +1,16 @@
 const asyncHandler = require("express-async-handler");
 const Product = require("../model/productModel");
 const Cart = require("../model/cartModel");
+const { default: mongoose } = require("mongoose");
 
 const addToCart = asyncHandler(async (req, res) => {
   const { productId, quantity } = req.body;
   const userId = req.user._id;
+
+  if (!mongoose.Types.ObjectId.isValid(productId)) {
+    res.status(400);
+    throw new Error("Invalid product ID");
+  }
 
   if (!productId || !quantity) {
     res.status(400);

@@ -8,3 +8,19 @@
 .app {
   min-height: 100vh;
 }
+
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.subHeading {
+  font-size: 1.5rem;
+  font-family: "Noto Sans Georgian", "sans-serif";
+  font-weight: 500;
+}
+
+.normal-text {
+  font-family: "Noto Sans Georgian", "sans-serif";
+  font-weight: 300;
+  font-size: 1.5rem;
+}
